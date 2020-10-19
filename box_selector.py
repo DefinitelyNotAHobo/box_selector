@@ -1,5 +1,5 @@
 # Database list of all boxes we keep in stock.
-# In this test case, It's the boxes used for Promaster
+# In this test case, It's the boxes used for Pro-M kit
 
 from dataclasses import dataclass
 @dataclass
