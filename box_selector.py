@@ -10,75 +10,46 @@ class BoxDimensions:
 
 if __name__ == "__main__":
     BOX_6_6_24 = BoxDimensions(width=6, length=6, height=24)
-    print(BOX_6_6_24)
-    print(BOX_6_6_24.width)
-    print(BOX_6_6_24.length)
-    print(BOX_6_6_24.height)
+    # print(BOX_6_6_24)
+    # print(BOX_6_6_24.width)
+    # print(BOX_6_6_24.length)
+    # print(BOX_6_6_24.height)
 
     BOX_22_22_4 = BoxDimensions(width=22, length=22, height=4)
-    print(BOX_22_22_4)
-    print(BOX_22_22_4.width)
-    print(BOX_22_22_4.length)
-    print(BOX_22_22_4.height)
 
     BOX_12_10_8 = BoxDimensions(width=12, length=10, height=8)
-    print(BOX_12_10_8)
-    print(BOX_12_10_8.width)
-    print(BOX_12_10_8.length)
-    print(BOX_12_10_8.height)
 
     BOX_8_8_36 = BoxDimensions(width=8, length=8, height=36)
-    print(BOX_8_8_36)
-    print(BOX_8_8_36.width)
-    print(BOX_8_8_36.length)
-    print(BOX_8_8_36.height)
 
     BOX_40_6_1 = BoxDimensions(width=40, length=6, height=1)
-    print(BOX_40_6_1)
-    print(BOX_40_6_1.width)
-    print(BOX_40_6_1.length)
-    print(BOX_40_6_1.height)
 
     BOX_54_24_1 = BoxDimensions(width=54, length=24, height=1)
-    print(BOX_54_24_1)
-    print(BOX_54_24_1.width)
-    print(BOX_54_24_1.length)
-    print(BOX_54_24_1.height)
 
     BOX_60_8_1 = BoxDimensions(width=60, length=8, height=1)
-    print(BOX_60_8_1)
-    print(BOX_60_8_1.width)
-    print(BOX_60_8_1.length)
-    print(BOX_60_8_1.height)
 
     # Not part of this auto program. Added for testing phase
     BOX_36_18_18 = BoxDimensions(width=36, length=18, height=18)
-    print(BOX_36_18_18)
-    print(BOX_36_18_18.width)
-    print(BOX_36_18_18.length)
-    print(BOX_36_18_18.height)
 
     # Not part of this auto program. Added for testing phase
     BOX_10_10_56 = BoxDimensions(width=10, length=10, height=56)
-    print(BOX_10_10_56)
-    print(BOX_10_10_56.width)
-    print(BOX_10_10_56.length)
-    print(BOX_10_10_56.height)
 
     # Not part of this auto program. Added for testing phase
     BOX_6_6_48 = BoxDimensions(width=6, length=6, height=48)
-    print(BOX_6_6_48)
-    print(BOX_6_6_48.width)
-    print(BOX_6_6_48.length)
-    print(BOX_6_6_48.height)
     
     # Not part of this auto program. Added for testing phase
     BOX_4_4_9 = BoxDimensions(width=4.3, length=4.3, height=9.6)
-    print(BOX_4_4_9)
-    print(BOX_4_4_9.width)
-    print(BOX_4_4_9.length)
-    print(BOX_4_4_9.height)
 
+boxes = (BOX_6_6_24, 
+         BOX_22_22_4,
+         BOX_12_10_8,
+         BOX_8_8_36,
+         BOX_40_6_1,
+         BOX_54_24_1,
+         BOX_60_8_1,
+         BOX_36_18_18,
+         BOX_10_10_56,
+         BOX_6_6_48,
+         BOX_4_4_9)
 
 
 # Ideally we can take a size input and loop through boxes in inventory to find and output the best box size.
@@ -87,9 +58,24 @@ if __name__ == "__main__":
 # 2. Iterate through the box variables and return all of them that have a length greater than input length
 # 3. Iterate through the box variables and return all of them that have a height greater than input height
 
-def box_filter(self):
-    x = input('Enter part width: ')
-    y = input('Enter part length: ')
-    z = input('Enter part height: ')
+def box_filter():
+    fit_w = []
+    fit_l = []
+    fit_h = []
+
+    x_dim = float(input('Enter part width: '))
+    for box in boxes:
+        if box.width > x_dim:
+            return box
+
+    y_dim = float(input('Enter part length: '))
+    for box in boxes:
+        if box.length > y_dim:
+            return box
+
+    z_dim = float(input('Enter part height: '))
+    for box in boxes:
+        if box.height > z_dim:
+            return box
     
 # 4. Nest those results within scope variables and return only the variables that matched all three.
