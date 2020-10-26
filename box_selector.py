@@ -57,27 +57,31 @@ boxes = (BOX_6_6_24,
 # 1. Iterate through the box variables and return all of them that have a width greater than input width
 # 2. Iterate through the box variables and return all of them that have a length greater than input length
 # 3. Iterate through the box variables and return all of them that have a height greater than input height
+# 4. Nest those results within scope variables and return only the variables that matched all three.
 
 def box_filter():
     fit_w = []
     fit_l = []
     fit_h = []
-
     y_dim = float(input('Enter part width: '))
     for box in boxes:
         if box.width > y_dim:
             fit_w.append(box)
-
     x_dim = float(input('Enter part length: '))
     for box in boxes:
         if box.length > x_dim:
             fit_l.append(box)
-
     z_dim = float(input('Enter part height: '))
     for box in boxes:
         if box.height > z_dim:
             fit_h.append(box)
+    y_set = set(fit_w) 
+    x_set = set(fit_l)
+    z_set = set(fit_h)
+    set1 = y_set.intersection(x_set)
+    result_set = set1.intersection(z_set)
+    final_list = list(result_set)
+    print(final_list)
 
-        return fit_w, fit_l, fit_h
-    
-# 4. Nest those results within scope variables and return only the variables that matched all three.
+box_filter()    
+
