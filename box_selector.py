@@ -63,19 +63,21 @@ def box_filter():
     fit_l = []
     fit_h = []
 
-    x_dim = float(input('Enter part width: '))
+    y_dim = float(input('Enter part width: '))
     for box in boxes:
-        if box.width > x_dim:
-            return box
+        if box.width > y_dim:
+            fit_w.append(box)
 
-    y_dim = float(input('Enter part length: '))
+    x_dim = float(input('Enter part length: '))
     for box in boxes:
-        if box.length > y_dim:
-            return box
+        if box.length > x_dim:
+            fit_l.append(box)
 
     z_dim = float(input('Enter part height: '))
     for box in boxes:
         if box.height > z_dim:
-            return box
+            fit_h.append(box)
+
+        return fit_w, fit_l, fit_h
     
 # 4. Nest those results within scope variables and return only the variables that matched all three.
