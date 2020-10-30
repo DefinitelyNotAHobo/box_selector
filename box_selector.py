@@ -1,8 +1,12 @@
 # Database list of all boxes we keep in stock.
 # In this test case, It's the boxes used for Pro-M kit + a few additional for more accurate testing
 
+# Add a function to calculate dimensional weight. Round to nearest inch then use (length x width x height / 139)
+
+# Eventually would like to capture box weight, but I can't add the functionality without adding box weight to every instance.
+
 from dataclasses import dataclass
-@dataclass
+@dataclass(frozen=True)
 class BoxDimensions:
     width: float
     length: float
@@ -88,4 +92,36 @@ def box_filter():
     final_list = intersection(fit_w, fit_l, fit_h)
     print(final_list)
 
-box_filter()    
+def box_filter2():
+    fit_w = []
+    fit_l = []
+    fit_h = []
+
+    y_dim = float(input('Enter part width in inches: '))
+    for box in boxes:
+        if box.width > y_dim:
+            fit_w.append(box)
+
+    x_dim = float(input('Enter part length in inches: '))
+    for box in boxes:
+        if box.length > x_dim:
+            fit_l.append(box)
+
+    z_dim = float(input('Enter part height in inches: '))
+    for box in boxes:
+        if box.height > z_dim:
+            fit_h.append(box)
+
+    y_set = set(fit_w) 
+    x_set = set(fit_l)
+    z_set = set(fit_h)
+
+    set1 = y_set.intersection(x_set)
+    result_set = set1.intersection(z_set)
+    final_list = list(result_set)
+
+    print(final_list)
+
+box_filter()
+
+box_filter2()
