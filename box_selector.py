@@ -55,12 +55,6 @@ boxes = (BOX_6_6_24,
          BOX_6_6_48,
          BOX_4_4_9)
 
-# A function for comparing results and returning overlaps
-def intersection(o_width, o_length, o_height): 
-    first_match = [value for value in o_width if value in o_length]
-    o_match =  [value for value in o_height if value in first_match]
-    return o_match 
-
 
 # Ideally we can take a size input and loop through boxes in inventory to find and output the best box size.
 # To further break it down, I'm going to do this step by step:
@@ -70,29 +64,6 @@ def intersection(o_width, o_length, o_height):
 # 4. Nest those results within scope variables and return only the variables that matched all three.
 
 def box_filter():
-    fit_w = []
-    fit_l = []
-    fit_h = []
-
-    y_dim = float(input('Enter part width: '))
-    for box in boxes:
-        if box.width > y_dim:
-            fit_w.append(box)
-
-    x_dim = float(input('Enter part length: '))
-    for box in boxes:
-        if box.length > x_dim:
-            fit_l.append(box)
-
-    z_dim = float(input('Enter part height: '))
-    for box in boxes:
-        if box.height > z_dim:
-            fit_h.append(box)
-
-    final_list = intersection(fit_w, fit_l, fit_h)
-    print(final_list)
-
-def box_filter2():
     fit_w = []
     fit_l = []
     fit_h = []
@@ -110,6 +81,48 @@ def box_filter2():
     z_dim = float(input('Enter part height in inches: '))
     for box in boxes:
         if box.height > z_dim:
+            fit_h.append(box)
+
+    y_set = set(fit_w) 
+    x_set = set(fit_l)
+    z_set = set(fit_h)
+
+    set1 = y_set.intersection(x_set)
+    result_set = set1.intersection(z_set)
+    final_list = list(result_set)
+
+    print(final_list)
+
+def box_filter2():
+    fit_w = []
+    fit_l = []
+    fit_h = []
+
+    y_dim = float(input('Enter part width in inches: '))
+    for box in boxes:
+        if box.height > y_dim:
+            fit_h.append(box)
+        elif box.width > y_dim:
+            fit_h.append(box)
+        elif box.length > y_dim:
+            fit_h.append(box)
+
+    x_dim = float(input('Enter part length in inches: '))
+    for box in boxes:
+        if box.height > x_dim:
+            fit_h.append(box)
+        elif box.width > x_dim:
+            fit_h.append(box)
+        elif box.length > x_dim:
+            fit_h.append(box)
+
+    z_dim = float(input('Enter part height in inches: '))
+    for box in boxes:
+        if box.height > z_dim:
+            fit_h.append(box)
+        elif box.width > z_dim:
+            fit_h.append(box)
+        elif box.length > z_dim:
             fit_h.append(box)
 
     y_set = set(fit_w) 
