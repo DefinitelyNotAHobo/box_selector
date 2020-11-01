@@ -93,6 +93,9 @@ def box_filter():
 
     print(final_list)
 
+# This is an attempt at the previous function but checking if ANY dimension of each box will fit the input dimensions
+# Unsurprisingly it returns many more results that aren't narrowed down in any way and also that wouldn't actually
+# fit the part since there's no logic to disqualify a result if one dimension doesn't fit
 def box_filter2():
     fit_w = []
     fit_l = []
@@ -101,20 +104,20 @@ def box_filter2():
     y_dim = float(input('Enter part width in inches: '))
     for box in boxes:
         if box.height > y_dim:
-            fit_h.append(box)
+            fit_w.append(box)
         elif box.width > y_dim:
-            fit_h.append(box)
+            fit_w.append(box)
         elif box.length > y_dim:
-            fit_h.append(box)
+            fit_w.append(box)
 
     x_dim = float(input('Enter part length in inches: '))
     for box in boxes:
         if box.height > x_dim:
-            fit_h.append(box)
+            fit_l.append(box)
         elif box.width > x_dim:
-            fit_h.append(box)
+            fit_l.append(box)
         elif box.length > x_dim:
-            fit_h.append(box)
+            fit_l.append(box)
 
     z_dim = float(input('Enter part height in inches: '))
     for box in boxes:
