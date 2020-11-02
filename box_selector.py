@@ -1,3 +1,4 @@
+import pdb
 # Database list of all boxes we keep in stock.
 # In this test case, It's the boxes used for Pro-M kit + a few additional for more accurate testing
 
@@ -63,81 +64,42 @@ boxes = (BOX_6_6_24,
 # 3. Iterate through the box variables and return all of them that have a height greater than input height
 # 4. Nest those results within scope variables and return only the variables that matched all three.
 
-def box_filter():
-    fit_w = []
-    fit_l = []
-    fit_h = []
+y_dim = float(input('Enter part width in inches: '))
+x_dim = float(input('Enter part length in inches: '))
+z_dim = float(input('Enter part height in inches: '))
 
-    y_dim = float(input('Enter part width in inches: '))
+def box_filter(y_dim, x_dim, z_dim):
+    fit_1 = []
+    fit_2 = []
+    fit_3 = []
+    fit_4 = []
+
     for box in boxes:
-        if box.width > y_dim:
-            fit_w.append(box)
-
-    x_dim = float(input('Enter part length in inches: '))
+        if box.width > y_dim and box.length > x_dim and box.height > z_dim:
+            fit_1.append(box)
+    
     for box in boxes:
-        if box.length > x_dim:
-            fit_l.append(box)
+        if box.length > y_dim and box.width > x_dim and box.height > z_dim:
+            fit_2.append(box)
 
-    z_dim = float(input('Enter part height in inches: '))
     for box in boxes:
-        if box.height > z_dim:
-            fit_h.append(box)
+        if box.height > y_dim and box.width > x_dim and box.length > z_dim:
+            fit_3.append(box)
 
-    y_set = set(fit_w) 
-    x_set = set(fit_l)
-    z_set = set(fit_h)
+    for box in boxes:
+        if box.length > y_dim and box.height > x_dim and box.width > z_dim:
+            fit_4.append(box)
 
-    set1 = y_set.intersection(x_set)
-    result_set = set1.intersection(z_set)
+    first_set = set(fit_1) 
+    second_set = set(fit_2)
+    third_set = set(fit_3)
+    fourth_set = set(fit_4)
+
+    set1 = first_set.intersection(second_set)
+    set2 = third_set.intersection(fourth_set)
+    result_set = set1.intersection(set2)
     final_list = list(result_set)
 
     print(final_list)
 
-# This is an attempt at the previous function but checking if ANY dimension of each box will fit the input dimensions
-# Unsurprisingly it returns many more results that aren't narrowed down in any way and also that wouldn't actually
-# fit the part since there's no logic to disqualify a result if one dimension doesn't fit
-def box_filter2():
-    fit_w = []
-    fit_l = []
-    fit_h = []
-
-    y_dim = float(input('Enter part width in inches: '))
-    for box in boxes:
-        if box.height > y_dim:
-            fit_w.append(box)
-        elif box.width > y_dim:
-            fit_w.append(box)
-        elif box.length > y_dim:
-            fit_w.append(box)
-
-    x_dim = float(input('Enter part length in inches: '))
-    for box in boxes:
-        if box.height > x_dim:
-            fit_l.append(box)
-        elif box.width > x_dim:
-            fit_l.append(box)
-        elif box.length > x_dim:
-            fit_l.append(box)
-
-    z_dim = float(input('Enter part height in inches: '))
-    for box in boxes:
-        if box.height > z_dim:
-            fit_h.append(box)
-        elif box.width > z_dim:
-            fit_h.append(box)
-        elif box.length > z_dim:
-            fit_h.append(box)
-
-    y_set = set(fit_w) 
-    x_set = set(fit_l)
-    z_set = set(fit_h)
-
-    set1 = y_set.intersection(x_set)
-    result_set = set1.intersection(z_set)
-    final_list = list(result_set)
-
-    print(final_list)
-
-box_filter()
-
-box_filter2()
+box_filter(y_dim, x_dim, z_dim)
