@@ -57,18 +57,22 @@ boxes = (BOX_6_6_24,
          BOX_4_4_9)
 
 
-# Ideally we can take a size input and loop through boxes in inventory to find and output the best box size.
-# To further break it down, I'm going to do this step by step:
-# 1. Iterate through the box variables and return all of them that have a width greater than input width
-# 2. Iterate through the box variables and return all of them that have a length greater than input length
-# 3. Iterate through the box variables and return all of them that have a height greater than input height
-# 4. Nest those results within scope variables and return only the variables that matched all three.
+def mm_to_in():
+    mm_c = float(input('Enter size in millimeters to convert to inches: '))
+    mm_convert = mm_c / 25.4
+    print("{} inches".format(mm_convert))
+    return master_loop()
 
-y_dim = float(input('Enter part width in inches: '))
-x_dim = float(input('Enter part length in inches: '))
-z_dim = float(input('Enter part height in inches: '))
 
-def box_filter(y_dim, x_dim, z_dim):
+# Take dimensional input from user and store into variables
+def take_dim(self):
+    y_dim = float(input('Enter part width in inches: '))
+    x_dim = float(input('Enter part length in inches: '))
+    z_dim = float(input('Enter part height in inches: '))
+    return box_filter(self, y_dim, x_dim, z_dim)
+
+# Iterate user input through boxes in inventory to find all boxes that fit.
+def box_filter(self, y_dim, x_dim, z_dim):
     fit_1 = []
     fit_2 = []
     fit_3 = []
@@ -101,5 +105,18 @@ def box_filter(y_dim, x_dim, z_dim):
     final_list = list(result_set)
 
     print(final_list)
+    return master_loop()
 
-box_filter(y_dim, x_dim, z_dim)
+def master_loop():
+    while True:
+        nav = input("Type (B) for Box selection, (C) for millimeter to inch Converter, (Q)' to Quit: ").lower()
+        if nav == 'b':
+            return take_dim('self')
+        elif nav == 'c':
+            return mm_to_in()
+        elif nav == 'q':
+            break
+        else:
+            print('Not a valid option')
+
+master_loop()
