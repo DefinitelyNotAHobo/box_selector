@@ -1,9 +1,7 @@
 import pdb
+import math
 # Database list of all boxes we keep in stock.
 # In this test case, It's the boxes used for Pro-M kit + a few additional for more accurate testing
-
-# Add a function to calculate dimensional weight. Round to nearest inch then use (length x width x height / 139)
-
 # Eventually would like to capture box weight, but I can't add the functionality without adding box weight to every instance.
 
 from dataclasses import dataclass
@@ -56,7 +54,16 @@ boxes = (BOX_6_6_24,
          BOX_6_6_48,
          BOX_4_4_9)
 
+# Add a function to calculate dimensional weight. Round up to nearest inch then use (length x width x height / 139)
+def dim_weight():
+    dw_w = math.ceil(float(input("Enter box width: ")))
+    dw_l = math.ceil(float(input("Enter box length: ")))
+    dw_h = math.ceil(float(input("Enter box height: ")))
+    dw_convert = math.ceil((dw_w * dw_l * dw_h) / 139)
+    print("Dimensional weight is: {} lbs".format(dw_convert))
+    return master_loop()
 
+# Take millimeter input, convert to inches and output result
 def mm_to_in():
     mm_c = float(input('Enter size in millimeters to convert to inches: '))
     mm_convert = mm_c / 25.4
@@ -78,6 +85,7 @@ def box_filter(self, y_dim, x_dim, z_dim):
     fit_3 = []
     fit_4 = []
 
+    # Logic to check possible box orientations
     for box in boxes:
         if box.width > y_dim and box.length > x_dim and box.height > z_dim:
             fit_1.append(box)
@@ -94,11 +102,13 @@ def box_filter(self, y_dim, x_dim, z_dim):
         if box.length > y_dim and box.height > x_dim and box.width > z_dim:
             fit_4.append(box)
 
+    # Convert results to sets that can be checked for intersections
     first_set = set(fit_1) 
     second_set = set(fit_2)
     third_set = set(fit_3)
     fourth_set = set(fit_4)
 
+    # Check for results that are present in all 'fit' lists
     set1 = first_set.intersection(second_set)
     set2 = third_set.intersection(fourth_set)
     result_set = set1.intersection(set2)
@@ -107,13 +117,16 @@ def box_filter(self, y_dim, x_dim, z_dim):
     print(final_list)
     return master_loop()
 
+# Master loop to direct to all implemented functions
 def master_loop():
     while True:
-        nav = input("Type (B) for Box selection, (C) for millimeter to inch Converter, (Q)' to Quit: ").lower()
+        nav = input("Type (B) for Box selection, (C) for millimeter to inch Converter, (D) for Dimensional Weight Calculator, (Q)' to Quit: ").lower()
         if nav == 'b':
             return take_dim('self')
         elif nav == 'c':
             return mm_to_in()
+        elif nav == 'd':
+            return dim_weight()
         elif nav == 'q':
             break
         else:
