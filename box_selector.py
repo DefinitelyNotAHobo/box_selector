@@ -6,6 +6,9 @@ import math
 
 from dataclasses import dataclass
 
+# Text styling
+TGREEN =  '\033[32m' # Green Text
+ENDC = '\033[m' # reset to the defaults
 
 @dataclass(frozen=True)
 class BoxDimensions:
@@ -158,7 +161,7 @@ def box_filter(self, y_dim, x_dim, z_dim):
 
 def con_loop():
     while True:
-        print("Conversion Tools")
+        print(TGREEN + "Conversion Tools" + ENDC)
         print("(1) For Millimeter to Inch Converter")
         print("(2) For Inch to Millimeter Converter")
         print("(3) For Gram to Ounce Converter")
@@ -186,7 +189,7 @@ def con_loop():
 # Master loop to direct to all implemented functions
 def master_loop():
     while True:
-        print("Welcome to Boxtopia!")
+        print(TGREEN + "Welcome to Boxtopia!" + ENDC)
         print("(1) For Box Selection")
         print("(2) For Conversion Tools")
         print("(3) For Dimensional Weight Calculator")
