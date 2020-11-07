@@ -13,11 +13,7 @@ class BoxDimensions:
 
 if __name__ == "__main__":
     BOX_6_6_24 = BoxDimensions(width=6, length=6, height=24)
-    # print(BOX_6_6_24)
-    # print(BOX_6_6_24.width)
-    # print(BOX_6_6_24.length)
-    # print(BOX_6_6_24.height)
-
+    
     BOX_22_22_4 = BoxDimensions(width=22, length=22, height=4)
 
     BOX_12_10_8 = BoxDimensions(width=12, length=10, height=8)
@@ -53,6 +49,12 @@ boxes = (BOX_6_6_24,
          BOX_10_10_56,
          BOX_6_6_48,
          BOX_4_4_9)
+
+def show_boxes():
+    print("Boxes in inventory: ")
+    for box in boxes:
+        print("{}in x {}in x {}in".format(box.width, box.length, box.height))
+    return master_loop()
 
 # Add a function to calculate dimensional weight. Round up to nearest inch then use (length x width x height / 139)
 def dim_weight():
@@ -120,13 +122,20 @@ def box_filter(self, y_dim, x_dim, z_dim):
 # Master loop to direct to all implemented functions
 def master_loop():
     while True:
-        nav = input("Type (B) for Box selection, (C) for millimeter to inch Converter, (D) for Dimensional Weight Calculator, (Q)' to Quit: ").lower()
-        if nav == 'b':
+        print("Welcome to Boxtopia!")
+        print("(1) For Box Selection")
+        print("(2) For Dimensional Conversion")
+        print("(3) For Dimensional Weight Calculator")
+        print("(4) For Box Inventory")
+        nav = input("Type the number of your selection or (Q)' to Quit: ").lower()
+        if nav == '1':
             return take_dim('self')
-        elif nav == 'c':
+        elif nav == '2':
             return mm_to_in()
-        elif nav == 'd':
+        elif nav == '3':
             return dim_weight()
+        elif nav == '4':
+            return show_boxes()
         elif nav == 'q':
             break
         else:
