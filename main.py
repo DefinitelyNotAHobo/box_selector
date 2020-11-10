@@ -10,6 +10,7 @@ class BoxDimensions:
     width: float
     length: float
     height: float
+
 if __name__ == "__main__":
     BOX_6_6_24 = BoxDimensions(width=6, length=6, height=24)
 
@@ -143,7 +144,9 @@ if __name__ == "__main__":
 
     def con_loop():
         while True:
+            print(TGREEN + "----------------" + ENDC)
             print(TGREEN + "Conversion Tools" + ENDC)
+            print(TGREEN + "----------------" + ENDC)
             print("(1) For Millimeter to Inch Converter")
             print("(2) For Inch to Millimeter Converter")
             print("(3) For Gram to Ounce Converter")
@@ -170,7 +173,9 @@ if __name__ == "__main__":
     # Master loop to direct to all implemented functions
     def master_loop():
         while True:
+            print(TGREEN + "--------------------" + ENDC)
             print(TGREEN + "Welcome to Boxtopia!" + ENDC)
+            print(TGREEN + "--------------------" + ENDC)
             print("(1) For Box Selection")
             print("(2) For Conversion Tools")
             print("(3) For Dimensional Weight Calculator")
