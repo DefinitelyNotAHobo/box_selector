@@ -1,9 +1,11 @@
 import math
 from dataclasses import dataclass
 
-# Text styling
-TGREEN = '\033[32m'  # Green Text
-ENDC = '\033[m'  # reset to the defaults
+# Text and other styling
+tgreen = '\033[32m'  # Green Text
+tyellow = '\033[33m'  # Yellow Text
+endc = '\033[m'  # reset to the defaults
+hrule = ('-'*80)
 
 @dataclass(frozen=True)
 class BoxDimensions:
@@ -51,11 +53,25 @@ if __name__ == "__main__":
              BOX_4_4_9)
 
 
+    # Title style lifted from Z. Tibbett
+    def bar(title: str, size=80, ch='-'):
+        print(ch*size)
+        print(title.center(size))
+        print(ch*size)
+
+    # Determine if input is a float
+    def prompt_float(prompt: str) -> float:
+        while user_input := input(prompt):
+            try:
+                return float(user_input)
+            except ValueError:
+                print('Error: please enter a valid floating-point number')
+
     # Take dimensional input from user and store into variables
     def take_dim(self):
-        y_dim = float(input('Enter part width in inches: '))
-        x_dim = float(input('Enter part length in inches: '))
-        z_dim = float(input('Enter part height in inches: '))
+        y_dim = prompt_float('Enter part width in inches: ')
+        x_dim = prompt_float('Enter part width in inches: ')
+        z_dim = prompt_float('Enter part width in inches: ')
         return box_filter(self, y_dim, x_dim, z_dim)
 
 
@@ -88,7 +104,11 @@ if __name__ == "__main__":
         final_list = []
         [final_list.append(x) for x in result_set if x not in final_list]
 
+        print(tgreen + hrule)
+        print("Boxes that will fit this part:")
+        print(hrule + endc + tyellow)
         print(final_list)
+        print(endc + tgreen + hrule + endc)
         return master_loop()
 
     def show_boxes():
@@ -98,9 +118,9 @@ if __name__ == "__main__":
         return master_loop()
 
     def dim_weight():
-        dw_w = math.ceil(float(input("Enter box width: ")))
-        dw_l = math.ceil(float(input("Enter box length: ")))
-        dw_h = math.ceil(float(input("Enter box height: ")))
+        dw_w = math.ceil(prompt_float("Enter box width in inches: "))
+        dw_l = math.ceil(prompt_float("Enter box length in inches: "))
+        dw_h = math.ceil(prompt_float("Enter box height in inches: "))
         dw_convert = math.ceil((dw_w * dw_l * dw_h) / 139)
         print("Dimensional weight is: {} lbs".format(dw_convert))
         return master_loop()
@@ -108,7 +128,7 @@ if __name__ == "__main__":
 
     # Take inch input, convert to millimeters and output result
     def in_to_mm():
-        in_c = float(input('Enter size in inches to convert to millimeters: '))
+        in_c = prompt_float('Enter size in inches to convert to millimeters: ')
         in_convert = in_c * 25.4
         print("{} millimeters".format(in_convert))
         return con_loop()
@@ -116,37 +136,37 @@ if __name__ == "__main__":
 
     # Take millimeter input, convert to inches and output result
     def mm_to_in():
-        mm_c = float(input('Enter size in millimeters to convert to inches: '))
+        mm_c = prompt_float('Enter size in millimeters to convert to inches: ')
         mm_convert = mm_c / 25.4
         print("{} inches".format(mm_convert))
         return con_loop()
 
     # Take gram input, convert to ounces and output results
     def g_to_oz():
-        g_c = float(input('Enter weight in grams to convert to ounces: '))
+        g_c = prompt_float('Enter weight in grams to convert to ounces: ')
         g_convert = g_c / 28.35
         print("{} oz".format(g_convert))
         return con_loop()
 
     # Take ounce input, convert to grams and output results
     def oz_to_g():
-        oz_c = float(input('Enter weight in ounces to convert to grams: '))
+        oz_c = prompt_float('Enter weight in ounces to convert to grams: ')
         oz_convert = oz_c * 28.35
         print("{} grams".format(oz_convert))
         return con_loop()
 
     # Take gram input, convert to pounds and output results
     def g_to_lb():
-        lb_c = float(input('Enter weight in grams to convert to pounds: '))
+        lb_c = prompt_float('Enter weight in grams to convert to pounds: ')
         lb_convert = lb_c / 453.59
         print("{} lbs".format(lb_convert))
         return con_loop()
 
     def con_loop():
         while True:
-            print(TGREEN + "----------------" + ENDC)
-            print(TGREEN + "Conversion Tools" + ENDC)
-            print(TGREEN + "----------------" + ENDC)
+            print(tgreen + hrule)
+            print("Conversion Tools")
+            print(hrule + endc)
             print("(1) For Millimeter to Inch Converter")
             print("(2) For Inch to Millimeter Converter")
             print("(3) For Gram to Ounce Converter")
@@ -173,9 +193,9 @@ if __name__ == "__main__":
     # Master loop to direct to all implemented functions
     def master_loop():
         while True:
-            print(TGREEN + "--------------------" + ENDC)
-            print(TGREEN + "Welcome to Boxtopia!" + ENDC)
-            print(TGREEN + "--------------------" + ENDC)
+            print(tgreen + hrule)
+            print("Welcome to Boxtopia!")
+            print(hrule + endc)
             print("(1) For Box Selection")
             print("(2) For Conversion Tools")
             print("(3) For Dimensional Weight Calculator")
