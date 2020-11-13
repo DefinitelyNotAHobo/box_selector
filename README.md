@@ -2,7 +2,7 @@
 
 The purpose of this repo is to develop a program that can help with packaging in a number of ways.
 
-##FEATURES
+## FEATURES
 1. Box Selection: reference an inventory of boxes to find the most efficient box size for an inputted product size. Format will be length, width, height. Units will be in inches.
 
 2. Multiple conversion tools and a loop to separate them.
@@ -16,5 +16,5 @@ The purpose of this repo is to develop a program that can help with packaging in
 
 Program will run a master loop that directs you to each feature.
 
-##INSTRUCTIONS
+## INSTRUCTIONS
 Run `python box_selector.py` on Windows or `python3 box_selector.py` on Mac
