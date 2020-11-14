@@ -5,13 +5,16 @@ from dataclasses import dataclass
 tgreen = '\033[32m'  # Green Text
 tyellow = '\033[33m'  # Yellow Text
 endc = '\033[m'  # reset to the defaults
-hrule = ('-'*80)
+hrule = ('-'*100)
 
 @dataclass(frozen=True)
 class BoxDimensions:
     width: float
     length: float
     height: float
+
+    def __repr__(self):
+        return f'{self.width}x{self.length}x{self.height}in'
 
 if __name__ == "__main__":
     BOX_6_6_24 = BoxDimensions(width=6, length=6, height=24)
@@ -51,13 +54,6 @@ if __name__ == "__main__":
              BOX_10_10_56,
              BOX_6_6_48,
              BOX_4_4_9)
-
-
-    # Title style lifted from Z. Tibbett
-    def bar(title: str, size=80, ch='-'):
-        print(ch*size)
-        print(title.center(size))
-        print(ch*size)
 
     # Determine if input is a float
     def prompt_float(prompt: str) -> float:
@@ -107,7 +103,8 @@ if __name__ == "__main__":
         print(tgreen + hrule)
         print("Boxes that will fit this part:")
         print(hrule + endc + tyellow)
-        print(final_list)
+        for x in final_list:
+            print(x)
         print(endc + tgreen + hrule + endc)
         return master_loop()
 
