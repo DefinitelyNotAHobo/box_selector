@@ -66,8 +66,8 @@ if __name__ == "__main__":
     # Take dimensional input from user and store into variables
     def take_dim(self):
         y_dim = prompt_float('Enter part width in inches: ')
-        x_dim = prompt_float('Enter part width in inches: ')
-        z_dim = prompt_float('Enter part width in inches: ')
+        x_dim = prompt_float('Enter part length in inches: ')
+        z_dim = prompt_float('Enter part height in inches: ')
         return box_filter(self, y_dim, x_dim, z_dim)
 
 
