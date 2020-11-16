@@ -5,7 +5,7 @@ from dataclasses import dataclass
 tgreen = '\033[32m'  # Green Text
 tyellow = '\033[33m'  # Yellow Text
 endc = '\033[m'  # reset to the defaults
-hrule = ('-'*100)
+hrule = ('-'*100) # Horizontal Rule to break up information
 
 @dataclass(frozen=True)
 class BoxDimensions:
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
     # Take dimensional input from user and store into variables
     def take_dim(self):
-        print(tgreen + hrule)
+        print(tgreen + " ")
         print("Box Selector")
         print(hrule + endc)
         print("Enter each part dimension in inches")
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         final_list = []
         [final_list.append(x) for x in result_set if x not in final_list]
 
-        print(tgreen + hrule)
+        print(tgreen + " ")
         print("Boxes that will fit this part:")
         print(hrule + endc + tyellow)
         for x in final_list:
@@ -113,59 +113,94 @@ if __name__ == "__main__":
         return master_loop()
 
     def show_boxes():
-        print("Boxes in inventory: ")
+        print(" ")
+        print(tgreen + "Boxes in inventory: ")
+        print(hrule + endc + tyellow)
         for box in boxes:
             print("{}in x {}in x {}in".format(box.width, box.length, box.height))
         return master_loop()
 
     def dim_weight():
-        dw_w = math.ceil(prompt_float("Enter box width in inches: "))
-        dw_l = math.ceil(prompt_float("Enter box length in inches: "))
-        dw_h = math.ceil(prompt_float("Enter box height in inches: "))
+        print(tgreen + " ")
+        print("Dimensional Weight Calculator")
+        print(hrule + endc)
+        print("Enter each dimension in inches")
+        dw_w = math.ceil(prompt_float("Enter box width: "))
+        dw_l = math.ceil(prompt_float("Enter box length: "))
+        dw_h = math.ceil(prompt_float("Enter box height: "))
         dw_convert = math.ceil((dw_w * dw_l * dw_h) / 139)
-        print("Dimensional weight is: {} lbs".format(dw_convert))
+        print(tgreen + hrule)
+        print("Dimensional weight is:")
+        print(hrule + endc + tyellow)
+        print("{} lbs".format(dw_convert))
+        print(" ")
         return master_loop()
 
 
     # Take inch input, convert to millimeters and output result
     def in_to_mm():
+        print(tgreen + " ")
+        print("Inch to Millimeter conversion" + endc)
         in_c = prompt_float('Enter size in inches to convert to millimeters: ')
         in_convert = in_c * 25.4
-        print("{} millimeters".format(in_convert))
+        print(" ")
+        print(tgreen + "Result:")
+        print(tyellow + "{} millimeters".format(in_convert) + endc)
+        print(" ")
         return con_loop()
 
 
     # Take millimeter input, convert to inches and output result
     def mm_to_in():
+        print(tgreen + " ")
+        print("Millimeter to Inch conversion" + endc)
         mm_c = prompt_float('Enter size in millimeters to convert to inches: ')
         mm_convert = mm_c / 25.4
-        print("{} inches".format(mm_convert))
+        print(" ")
+        print(tgreen + "Result:")
+        print(tyellow + "{} inches".format(mm_convert) + endc)
+        print(" ")
         return con_loop()
 
     # Take gram input, convert to ounces and output results
     def g_to_oz():
+        print(tgreen + " ")
+        print("Gram to Ounce conversion" + endc)
         g_c = prompt_float('Enter weight in grams to convert to ounces: ')
         g_convert = g_c / 28.35
-        print("{} oz".format(g_convert))
+        print(" ")
+        print(tgreen + "Result:")
+        print(tyellow + "{} oz".format(g_convert) + endc)
+        print(" ")
         return con_loop()
 
     # Take ounce input, convert to grams and output results
     def oz_to_g():
+        print(tgreen + " ")
+        print("Ounce to Gram conversion" + endc)
         oz_c = prompt_float('Enter weight in ounces to convert to grams: ')
         oz_convert = oz_c * 28.35
-        print("{} grams".format(oz_convert))
+        print(" ")
+        print(tgreen + "Result:")
+        print(tyellow + "{} grams".format(oz_convert) + endc)
+        print(" ")
         return con_loop()
 
     # Take gram input, convert to pounds and output results
     def g_to_lb():
+        print(tgreen + " ")
+        print("Gram to Pound conversion" + endc)
         lb_c = prompt_float('Enter weight in grams to convert to pounds: ')
         lb_convert = lb_c / 453.59
-        print("{} lbs".format(lb_convert))
+        print(" ")
+        print(tgreen + "Result:")
+        print(tyellow + "{} lbs".format(lb_convert) + endc)
+        print(" ")
         return con_loop()
 
     def con_loop():
         while True:
-            print(tgreen + hrule)
+            print(tgreen + " ")
             print("Conversion Tools")
             print(hrule + endc)
             print("(1) For Millimeter to Inch Converter")
@@ -194,6 +229,7 @@ if __name__ == "__main__":
     # Master loop to direct to all implemented functions
     def master_loop():
         while True:
+            print(" ")
             print(tgreen + hrule)
             print("Welcome to Boxtopia!")
             print(hrule + endc)
